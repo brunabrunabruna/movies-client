@@ -1,12 +1,16 @@
 import { createRoot } from "react-dom/client";
 //import statement to indcate you need to bundle index.scss
 import "./index.scss";
+import MainView from "../components/main-view/main-view";
 
 //main component
 const MyFlixApplication = () => {
   return (
     <div className="my-flix">
-      <div>Good morning!</div>
+      <div>
+        <b>It's Movie Night!</b>
+      </div>
+      <MainView />
     </div>
   );
 };
