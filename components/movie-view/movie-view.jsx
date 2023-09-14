@@ -1,4 +1,5 @@
 import "../movie-view/movie-view.scss";
+import Proptypes from "prop-types";
 const MovieView = ({ movie, onBackClick }) => {
   return (
     <div>
@@ -22,6 +23,16 @@ const MovieView = ({ movie, onBackClick }) => {
       <button onClick={onBackClick}>go back</button>
     </div>
   );
+};
+
+MovieView.propTypes = {
+  movie: Proptypes.shape({
+    title: Proptypes.string.isRequired,
+    description: Proptypes.string.isRequired,
+    // director: PropTypes.shape({ name: Proptypes.string }),
+    // genre: PropTypes.shape({ name: Proptypes.string }),
+  }).isRequired,
+  onBackClick: Proptypes.func.isRequired,
 };
 
 export default MovieView;
