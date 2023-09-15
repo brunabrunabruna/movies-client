@@ -25,14 +25,14 @@ const MovieView = ({ movie, onBackClick }) => {
   );
 };
 
-MovieView.propTypes = {
-  movie: Proptypes.shape({
-    title: Proptypes.string.isRequired,
-    description: Proptypes.string.isRequired,
-    // director: PropTypes.shape({ name: Proptypes.string }),
-    // genre: PropTypes.shape({ name: Proptypes.string }),
-  }).isRequired,
-  onBackClick: Proptypes.func.isRequired,
-};
+// MovieView.propTypes = {
+//   movie: Proptypes.shape({
+//     title: Proptypes.string.isRequired,
+//     description: Proptypes.string.isRequired,
+//     // director: PropTypes.shape({ name: Proptypes.string }),
+//     // genre: PropTypes.shape({ name: Proptypes.string }),
+//   }).isRequired,
+//   onBackClick: Proptypes.func.isRequired,
+// };
 
 export default MovieView;

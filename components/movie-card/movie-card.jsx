@@ -12,11 +12,11 @@ const MovieCard = ({ movie, onMovieClick }) => {
   );
 };
 
-MovieCard.propTypes = {
-  movie: Proptypes.shape({
-    title: Proptypes.string.isRequired,
-  }).isRequired,
-  onMovieClick: Proptypes.func.isRequired,
-};
+// MovieCard.propTypes = {
+//   movie: Proptypes.shape({
+//     title: Proptypes.string.isRequired,
+//   }).isRequired,
+//   onMovieClick: Proptypes.func.isRequired,
+// };
 
 export default MovieCard;
