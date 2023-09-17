@@ -1,5 +1,7 @@
 import "../movie-view/movie-view.scss";
 import Proptypes from "prop-types";
+import React, { useEffect, useState } from "react";
+
 const MovieView = ({ movie, onBackClick }) => {
   return (
     <div>
@@ -20,6 +22,7 @@ const MovieView = ({ movie, onBackClick }) => {
         <span>Genre:</span>
         <span>{movie.genre.name}</span>
       </div>
+
       <button onClick={onBackClick}>go back</button>
     </div>
   );

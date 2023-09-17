@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
+import SimilarMovies from "../similar-movies/similar-movies";
 
 const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -13,11 +14,21 @@ const MainView = () => {
   }, []);
   const [selectedMovie, setSelectedMovie] = useState(null);
   if (selectedMovie) {
+    const similarMovies = movies.filter((otherMovie) => {
+      return (
+        otherMovie.genre.name === selectedMovie.genre.name &&
+        otherMovie._id !== selectedMovie._id
+      );
+    });
+
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+      <>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
+        />
+        <SimilarMovies movies={similarMovies} />
+      </>
     );
   }
 

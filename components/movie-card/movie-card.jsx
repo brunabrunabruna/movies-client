@@ -1,8 +1,10 @@
 import Proptypes from "prop-types";
+import "./movie-card.scss";
 
 const MovieCard = ({ movie, onMovieClick }) => {
   return (
     <div
+      className="card"
       onClick={() => {
         onMovieClick(movie);
       }}
