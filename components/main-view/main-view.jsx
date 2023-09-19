@@ -2,17 +2,46 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
 import SimilarMovies from "../similar-movies/similar-movies";
+import LoginView from "../login-view/login-view";
+import SignupView from "../signup-view/signup-view";
 
 const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
   useEffect(() => {
-    fetch("https://movies-api-render-0a0q.onrender.com/movies")
+    if (!token) {
+      return;
+    }
+    fetch("https://movies-api-render-0a0q.onrender.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => response.json())
       .then((data) => {
         setMovies(data);
+        console.log(data);
       });
-  }, []);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  }, [token]);
+
+  //if user is not logged in, return login form
+  if (!user) {
+    return (
+      <div>
+        <LoginView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+          }}
+        />
+        <SignupView />
+      </div>
+    );
+  }
   if (selectedMovie) {
     const similarMovies = movies.filter((otherMovie) => {
       return (
@@ -45,6 +74,15 @@ const MainView = () => {
           />
         );
       })}
+      <button
+        onClick={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      >
+        logout
+      </button>
     </div>
   );
 };
