@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SignupView = ({ onLoggedIn }) => {
+const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -13,13 +13,17 @@ const SignupView = ({ onLoggedIn }) => {
       username: username,
       password: password,
       email: email,
-      birthday: birthday,
+      birthday: birthday
     };
 
-    fetch("https://movies-api-render-0a0q.onrender.com/login", {
+    //DEBUG
+    console.log(JSON.stringify(data));
+    console.log(username);
+
+    fetch("https://movies-api-render-0a0q.onrender.com/users", {
       method: "POST",
-      body: JSON.stringify(data),
       headers: { "Content-Type": "application / json" },
+      body: JSON.stringify(data),
     })
       .then((response) => {
         console.log(response);

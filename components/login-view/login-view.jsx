@@ -9,8 +9,11 @@ const LoginView = ({ onLoggedIn }) => {
 
     const data = {
       username: username,
-      password: password
+      password: password,
     };
+
+    //DEBUG
+    console.log(JSON.stringify(data));
 
     fetch("https://movies-api-render-0a0q.onrender.com/login", {
       method: "POST",
@@ -18,15 +21,17 @@ const LoginView = ({ onLoggedIn }) => {
       body: JSON.stringify(data),
     })
       .then((response) => {
+        // console.log("response json", response.json());
         return response.json();
       })
-      .then((credentials) => {
-        console.log("login response:", credentials);
-        if (credentials.user) {
-          localStorage.setItem("user", JSON.stringify(credentials.user));
-          localStorage.setItem("token", credentials.token);
-          onLoggedIn(credentials.user, credentials.token);
+      .then((data) => {
+        console.log("origin response", data);
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+          onLoggedIn(data.user, data.token);
         } else {
+          console.log("data.user:", data.user);
           alert("no such user");
         }
       });
