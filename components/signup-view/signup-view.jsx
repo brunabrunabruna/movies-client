@@ -13,7 +13,7 @@ const SignupView = () => {
       username: username,
       password: password,
       email: email,
-      birthday: birthday
+      birthday: birthday,
     };
 
     //DEBUG
@@ -22,15 +22,18 @@ const SignupView = () => {
 
     fetch("https://movies-api-render-0a0q.onrender.com/users", {
       method: "POST",
-      headers: { "Content-Type": "application / json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-      .then((response) => {
-        console.log(response);
+      .then(async (response) => {
+        console.log("response:", response);
         if (response.ok) {
           alert("signup successful");
           window.location.reload();
         } else {
+          const errorText = await response.text();
+          // Read the response body as text
+          console.log("Error response body:", errorText);
           alert("signup failed");
         }
       })

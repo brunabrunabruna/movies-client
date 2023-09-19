@@ -15,20 +15,22 @@ const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  console.log(`token: ${token}`);
-
   useEffect(() => {
     if (!token) {
       return;
     }
-    console.log(`token: ${token}`);
     fetch("https://movies-api-render-0a0q.onrender.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
+        //DEBUG
+        // console.log("data", data);
         setMovies(data);
-        console.log(data);
+        // console.log("data", data);
+      })
+      .catch((error) => {
+        console.error("fetch error:", error);
       });
   }, [token]);
 

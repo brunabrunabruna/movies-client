@@ -13,19 +13,18 @@ const LoginView = ({ onLoggedIn }) => {
     };
 
     //DEBUG
-    console.log(JSON.stringify(data));
+    // console.log("login data stringified", JSON.stringify(data));
 
     fetch("https://movies-api-render-0a0q.onrender.com/login", {
       method: "POST",
-      headers: { "Content-Type": "application / json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
       .then((response) => {
         // console.log("response json", response.json());
         return response.json();
       })
-      .then((data) => {
-        console.log("origin response", data);
+      .then(async (data) => {
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
@@ -34,8 +33,8 @@ const LoginView = ({ onLoggedIn }) => {
           console.log("data.user:", data.user);
           alert("no such user");
         }
-      });
-    // .catch((err) => console.log("error", err));
+      })
+      .catch((err) => console.log("error", err));
   };
 
   return (
