@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import {
+  Button,
+  Card,
+  CardGroup,
+  Col,
+  Container,
+  Form,
+  Row,
+} from "react-bootstrap";
 
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -38,33 +47,56 @@ const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          required
-        />
-      </label>
-
-      <label>
-        password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          required
-        />
-      </label>
-
-      <button>submit</button>
-    </form>
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col md={5}>
+          <CardGroup>
+            <Card className="mb-5">
+              <Card.Body>
+                <Card.Title>Already have an account? Login:</Card.Title>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group>
+                    <Form.Label>
+                      username:
+                      <Form.Control
+                        type="text"
+                        value={username}
+                        onChange={(e) => {
+                          setUsername(e.target.value);
+                        }}
+                        required
+                        placeholder="enter your username"
+                      />
+                    </Form.Label>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>
+                      password:
+                      <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
+                        required
+                        placeholder="enter your password"
+                      />
+                    </Form.Label>
+                  </Form.Group>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    submit
+                  </Button>
+                </Form>{" "}
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

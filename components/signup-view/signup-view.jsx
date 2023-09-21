@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import {
+  Button,
+  Card,
+  CardGroup,
+  Col,
+  Container,
+  Form,
+  Row,
+} from "react-bootstrap";
+import CardHeader from "react-bootstrap/esm/CardHeader";
 
 const SignupView = () => {
   const [username, setUsername] = useState("");
@@ -42,55 +52,86 @@ const SignupView = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          required
-        />
-      </label>
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col md={5}>
+          <CardGroup>
+            <Card className="">
+              <Card.Body>
+                <Card.Title>Please register:</Card.Title>
 
-      <label>
-        password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          required
-        />
-      </label>
-      <label>
-        email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          required
-        />
-      </label>
-      <label>
-        birthday:
-        <input
-          type="date"
-          value={birthday}
-          onChange={(e) => {
-            setBirthday(e.target.value);
-          }}
-          required
-        />
-      </label>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group>
+                    <Form.Label>
+                      username:
+                      <Form.Control
+                        type="text"
+                        value={username}
+                        onChange={(e) => {
+                          setUsername(e.target.value);
+                        }}
+                        required
+                        placeholder="enter your username"
+                      />
+                    </Form.Label>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>
+                      password:
+                      <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
+                        required
+                        placeholder="enter your password"
+                      />
+                    </Form.Label>
+                  </Form.Group>
 
-      <button>submit</button>
-    </form>
+                  <Form.Group>
+                    <Form.Label>
+                      email:
+                      <Form.Control
+                        type="email"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
+                        required
+                        placeholder="enter your email"
+                      />
+                    </Form.Label>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>
+                      bday:
+                      <Form.Control
+                        type="date"
+                        value={birthday}
+                        onChange={(e) => {
+                          setBirthday(e.target.value);
+                        }}
+                        required
+                        // placeholder="enter your birthday"
+                      />
+                    </Form.Label>
+                  </Form.Group>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    submit
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
