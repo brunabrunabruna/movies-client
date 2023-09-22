@@ -4,6 +4,8 @@ import MovieView from "../movie-view/movie-view";
 import SimilarMovies from "../similar-movies/similar-movies";
 import LoginView from "../login-view/login-view";
 import SignupView from "../signup-view/signup-view";
+import { Button, Col, Container, Nav, Row } from "react-bootstrap";
+import NavbarComponent from "../navbar/navbar";
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -38,13 +40,27 @@ const MainView = () => {
   if (!user) {
     return (
       <div>
+        <NavbarComponent />
+        {/* empty space at the top of the page ( so navbar doesnt block content) */}
+        <Row className="mt-5">
+          <Col className="mt-5 col-12"></Col>
+          <Col className="mt-5 col-12"></Col>
+          <Col className="mt-5 col-12"></Col>
+        </Row>
+        <Container>
+          <Row className="justify-content-md-center">
+            <Col className="text-center fs-2 m-5">
+              Studio Ghibli Movies Archive
+            </Col>
+          </Row>
+        </Container>
+        <SignupView />
         <LoginView
           onLoggedIn={(user, token) => {
             setUser(user);
             setToken(token);
           }}
         />
-        <SignupView />
       </div>
     );
   }
@@ -58,38 +74,55 @@ const MainView = () => {
 
     return (
       <>
+        <NavbarComponent />
         <MovieView
           movie={selectedMovie}
           onBackClick={() => setSelectedMovie(null)}
         />
-        <SimilarMovies movies={similarMovies} />
+        <SimilarMovies
+          movies={similarMovies}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie);
+          }}
+        />
       </>
     );
   }
 
   return (
-    <div>
-      {movies.map((movie) => {
-        return (
-          <MovieCard
-            key={movie._id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
-            }}
-          />
-        );
-      })}
-      <button
+    <>
+      <NavbarComponent />
+      {/* empty space at the top of the page ( so navbar doesnt block content) */}
+      <Row className="mt-5">
+        <Col className="mt-5 col-12"></Col>
+        <Col className="mt-5 col-12"></Col>
+        <Col className="mt-5 col-12"></Col>
+      </Row>
+      <Row md={3} className="mb-5">
+        {movies.map((movie) => {
+          return (
+            <Col key={movie._id} className="mb-5">
+              <MovieCard
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          );
+        })}
+      </Row>
+      <Button
         onClick={() => {
           setUser(null);
           setToken(null);
           localStorage.clear();
         }}
+        className="m-3 text-align-center"
       >
         logout
-      </button>
-    </div>
+      </Button>
+    </>
   );
 };
 

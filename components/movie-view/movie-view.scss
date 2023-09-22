@@ -1,3 +1,10 @@
 .moviePoster {
-  max-width: 200px;
+  width: 400px;
+  height: 100%;
+  object-fit: cover;
+  text-align: center;
+}
+
+.movie-infos{
+  padding:20px
 }

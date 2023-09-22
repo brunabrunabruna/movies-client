@@ -1,7 +1,22 @@
+@import "../node_modules/bootstrap/scss/functions";
+
+$primary: rgb(123, 203, 246);
+$secondary:white;
+// $body-bg: rgb(218, 240, 252);
+$body-bg: white;
+// html{
+//     background-color: #ce1414;
+// }
+
+
+// $color:blue-400;
+
+
+// .my-flix{
+//     // color: $gray-400;
+// }
+
+
+//import bootstrap has to be at the end otherwise it will overwrite all modified variables
 @import '~bootstrap/scss/bootstrap.scss';
 
-$color: pink;
-
-.my-flix{
-    color: $color;
-}

@@ -50,8 +50,8 @@ const LoginView = ({ onLoggedIn }) => {
     <Container>
       <Row className="justify-content-md-center">
         <Col md={5}>
-          <CardGroup>
-            <Card className="mb-5">
+          <CardGroup className="">
+            <Card className="mb-5 border border-0">
               <Card.Body>
                 <Card.Title>Already have an account? Login:</Card.Title>
                 <Form onSubmit={handleSubmit}>
@@ -87,6 +87,7 @@ const LoginView = ({ onLoggedIn }) => {
                     variant="primary"
                     type="submit"
                     onClick={handleSubmit}
+                    className="text-white"
                   >
                     submit
                   </Button>

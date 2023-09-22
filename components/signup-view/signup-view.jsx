@@ -56,7 +56,7 @@ const SignupView = () => {
       <Row className="justify-content-md-center">
         <Col md={5}>
           <CardGroup>
-            <Card className="">
+            <Card className="mb-5 border border-0">
               <Card.Body>
                 <Card.Title>Please register:</Card.Title>
 
@@ -122,6 +122,7 @@ const SignupView = () => {
                     variant="primary"
                     type="submit"
                     onClick={handleSubmit}
+                    className="text-white"
                   >
                     submit
                   </Button>
