@@ -9,13 +9,6 @@ const SimilarMovies = ({ movies, onMovieClick }) => {
 
   return (
     <>
-      {/* <Card className="card border-0 h-100 ">
-    // <Card.Img src={movie.imagepath} className="img" />
-    // <Card.Body className="d-flex flex-column">
-    //   <Card.Title>{movie.title}</Card.Title>
-    //   <Card.Text>{movie.description}</Card.Text>
-    //   <Button */}
-
       <div className="fs-3">
         <Container className="mt-5">
           <Row>
@@ -25,11 +18,11 @@ const SimilarMovies = ({ movies, onMovieClick }) => {
           </Row>
         </Container>
         <Container>
-          <Row className="md-3 mb-5">
+          <Row className="mb-5">
             {movies.map((movie) => {
               return (
                 <>
-                  <Col className="col-md-3 mb-5">
+                  <Col className="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-xs-12 mb-5">
                     <Card className=" border-0 h-100 ">
                       <Card.Img
                         src={movie.imagepath}

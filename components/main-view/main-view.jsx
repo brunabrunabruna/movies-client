@@ -6,6 +6,7 @@ import LoginView from "../login-view/login-view";
 import SignupView from "../signup-view/signup-view";
 import { Button, Col, Container, Nav, Row } from "react-bootstrap";
 import NavbarComponent from "../navbar/navbar";
+import "./main-view.scss";
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -98,10 +99,13 @@ const MainView = () => {
         <Col className="mt-5 col-12"></Col>
         <Col className="mt-5 col-12"></Col>
       </Row>
-      <Row md={3} className="mb-5">
+      <Row className="mb-5 justify-content-center">
         {movies.map((movie) => {
           return (
-            <Col key={movie._id} className="mb-5">
+            <Col
+              key={movie._id}
+              className="mb-5 col-xl-3 col-lg-4 col-md-6 col-sm-12 card-size "
+            >
               <MovieCard
                 movie={movie}
                 onMovieClick={(newSelectedMovie) => {
