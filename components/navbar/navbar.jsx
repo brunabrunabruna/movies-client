@@ -5,7 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Img from "../img/ghibli-logo.png";
 import "./navbar.scss";
 
-function NavbarComponent() {
+function NavbarComponent({ user, onLoggedOut }) {
   return (
     <Navbar
       expand="lg"
@@ -27,8 +27,20 @@ function NavbarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-end">
-            <Nav.Link href="/movies">Home</Nav.Link>
-            <Nav.Link href="#link">Favorites</Nav.Link>
+            {!user ? (
+              <>
+                <Nav.Link href="/login">login</Nav.Link>
+                <Nav.Link href="/signup">signup</Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="/movies">Home</Nav.Link>
+                <Nav.Link href="/profile">Profile</Nav.Link>
+                <Nav.Link href="/login" onClick={onLoggedOut}>
+                  Logout
+                </Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

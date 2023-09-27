@@ -4,16 +4,33 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import NavbarComponent from "../navbar/navbar";
 import Img from "../img/ghibli-logo.png";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import SimilarMovies from "../similar-movies/similar-movies";
 
-const MovieView = ({ movie, onBackClick }) => {
+const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+
+  // useEffect(() => {
+  //   console.log(movieId);
+  // }, [movieId]);
+
+  if (!movies.length) {
+    return <></>;
+  }
+
+  const movie = movies.find((m) => m._id === movieId);
+  const similarMovies = movies.filter((otherMovie) => {
+    return otherMovie.genre.name === movie.genre.name;
+  });
+
+  if (!movie) {
+    return <div>unkonow movie!!!</div>;
+  }
+
   return (
     <>
       <Container className="">
-        <Row className="mt-5">
-          <Col className="mt-5 col-12"></Col>
-          <Col className="mt-5 col-12"></Col>
-          <Col className="mt-5 col-12"></Col>
-        </Row>
         <Row className="justify-content-md-center ">
           <Col className=" col-lg-6 ">
             <Card className=" border-0 moviePoster mx-auto">
@@ -32,17 +49,16 @@ const MovieView = ({ movie, onBackClick }) => {
 
                 <Card.Text>{movie.genre.name}</Card.Text>
               </Card.Body>
-              <Button
-                className=" mt-auto m-4"
-                variant="primary"
-                onClick={onBackClick}
-              >
-                Go back
-              </Button>
+              <Link to="/movies">
+                <Button className=" mt-auto m-4" variant="primary">
+                  Go back
+                </Button>
+              </Link>
             </Card>
           </Col>
         </Row>
       </Container>
+      <SimilarMovies movies={similarMovies} />
     </>
   );
 };
@@ -53,8 +69,7 @@ MovieView.propTypes = {
     description: Proptypes.string.isRequired,
     director: Proptypes.shape({ name: Proptypes.string }),
     genre: Proptypes.shape({ name: Proptypes.string }),
-  }).isRequired,
-  onBackClick: Proptypes.func.isRequired,
+  }),
 };
 
 export default MovieView;

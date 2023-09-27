@@ -1,12 +1,14 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import "../similar-movies/similar-movies.scss";
+import { Link } from "react-router-dom";
 
-const SimilarMovies = ({ movies, onMovieClick }) => {
+const SimilarMovies = ({ movies }) => {
   if (!movies.length) {
     return <></>;
   }
-
+  // debug
+  // console.log(JSON.stringify(movies));
   return (
     <>
       <div className="fs-3">
@@ -29,17 +31,14 @@ const SimilarMovies = ({ movies, onMovieClick }) => {
                         className="rounded-4 similar-movie-img "
                       />
 
-                      <Card.Body
-                        className="d-flex flex-column"
-                        onClick={() => {
-                          onMovieClick(movie);
-                        }}
-                      >
-                        <Button variant="secondary" className="secondary">
-                          <Card.Title className="fs-6" href="/">
-                            {movie.title}
-                          </Card.Title>{" "}
-                        </Button>
+                      <Card.Body className="d-flex flex-column">
+                        <Link to={`/movies/${movie._id}`}>
+                          <Button variant="secondary" className="secondary">
+                            <Card.Title className="fs-6" href="/">
+                              {movie.title}
+                            </Card.Title>
+                          </Button>
+                        </Link>
                       </Card.Body>
                     </Card>
                   </Col>
