@@ -50,16 +50,17 @@ const ProfileView = ({ user, token, movies, setUser }) => {
       .then(async (response) => {
         console.log("response:", response);
         if (response.ok) {
-          alert("signup successful");
+          alert("update successful");
+          const data = await response.json();
+          localStorage.setItem("user", JSON.stringify(data));
           window.location.reload();
         } else {
           const errorText = await response.text();
           // Read the response body as text
           console.log("Error response body:", errorText);
-          alert("signup failed");
+          alert("update failed");
         }
       })
-
       .catch((err) => console.log("error", err));
   };
   //   console.log(favoriteMovies);
