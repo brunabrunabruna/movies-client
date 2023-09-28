@@ -22,7 +22,9 @@ const ProfileView = ({ user, token, movies, setUser }) => {
 
   //creates an array with all the movies
   let result = movies.filter((m) => user.favoriteMovies.includes(m._id));
-  const handleSubmit = (event) => {
+
+  //UPDATING PROFILE INFOS
+  const handleUpdate = (event) => {
     event.preventDefault();
 
     let data = {
@@ -63,36 +65,43 @@ const ProfileView = ({ user, token, movies, setUser }) => {
       })
       .catch((err) => console.log("error", err));
   };
-  //   console.log(favoriteMovies);
-  //   useEffect(() => {
-  //     // if (!token) {
-  //     //   return;
-  //     // }
-  //     fetch(`https://movies-api-render-0a0q.onrender.com/users/`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         //DEBUG
-  //         console.log("users", data);
-  //         // setMovies(data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("fetch error:", error);
-  //       });
-  //   }, []);
+
+  //DELETE ACCOUNT
+  const deleteAccount = () => {
+    fetch(
+      `https://movies-api-render-0a0q.onrender.com/users/${user.username}`,
+      {
+        method: "DELETE",
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        // body: JSON.stringify(data),
+      }
+    ).then((response) => {
+      if (response.ok) {
+        setUser(null);
+        // setMovies(null);
+        localStorage.clear();
+        alert("your account has been deleted");
+        window.location.replace("/login");
+      } else {
+        alert("could not delete account");
+      }
+    });
+  };
 
   return (
     <>
-      <Container>
+      <Container className="">
         <Row className="justify-content-md-center">
           <Col md={5}>
             <CardGroup>
-              <Card className="mb-5 border border-0">
+              <Card className="mb-5 border border-0 card-custom">
                 <Card.Body>
                   <Card.Title>My Profile</Card.Title>
                   <Card.Text>Want to change some infos?</Card.Text>
-                  <Form onSubmit={handleSubmit}>
+                  <Form onSubmit={handleUpdate}>
                     <Form.Group>
                       <Form.Label>
                         username:
@@ -151,11 +160,21 @@ const ProfileView = ({ user, token, movies, setUser }) => {
                     <Button
                       variant="primary"
                       type="submit"
-                      onClick={handleSubmit}
+                      onClick={handleUpdate}
                       className="text-white"
                     >
                       update profile
                     </Button>
+                    <Link to="/login">
+                      <Button
+                        variant="danger"
+                        type=""
+                        onClick={deleteAccount}
+                        className="text-white"
+                      >
+                        delete your account
+                      </Button>
+                    </Link>
                   </Form>
                 </Card.Body>
               </Card>
@@ -178,7 +197,6 @@ const ProfileView = ({ user, token, movies, setUser }) => {
               </Col>
             );
           })}
-          <Col>hello </Col>
         </Row>
       </Container>
     </>
