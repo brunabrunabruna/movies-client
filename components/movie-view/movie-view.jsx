@@ -38,7 +38,7 @@ const MovieView = ({ movies }) => {
             </Card>
           </Col>
           <Col className="col-lg-6 mt-5 mt-md-0">
-            <Card className="movie-infos border-0 h-100">
+            <Card className="movie-infos border-0 h-100 card-custom">
               <Card.Body className="d-flex flex-column">
                 <Card.Title className="fs-2">{movie.title}</Card.Title>
                 <Card.Text>{movie.description}</Card.Text>

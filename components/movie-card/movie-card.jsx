@@ -1,8 +1,8 @@
 import Proptypes from "prop-types";
-import "./movie-card.scss";
 import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./movie-card.scss";
 
 const MovieCard = ({ movie, token, setUser, user }) => {
   const [isFavorite, setIsFavorite] = useState(
@@ -102,7 +102,10 @@ const MovieCard = ({ movie, token, setUser, user }) => {
       key={movie._id}
       className="mb-5 col-xl-3 col-lg-4 col-md-6 col-sm-12 card-size "
     >
-      <Card className="card border-0 h-100 justify-content-center">
+      <Card
+        className="border-0 h-100 justify-content-center card-custom"
+        // style={cardCustom}
+      >
         <Card.Img src={movie.imagepath} className="img" />
         <Card.Body className="d-flex flex-column">
           {/* <Card.Title>{movie.title}</Card.Title> */}

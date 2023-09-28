@@ -3,7 +3,19 @@
 $primary: rgb(123, 203, 246);
 $secondary:white;
 // $body-bg: rgb(218, 240, 252);
-$body-bg: white;
+$body-bg: #ffffff;
+$bs-body-bg: pink;
+
+.card-custom{
+    background-color: rgb(188, 231, 255) !important;
+    border-radius: 20px !important;
+ 
+}
+
+.margin-top-custom{
+    margin-top: 15rem !important;
+}
+
 // html{
 //     background-color: #ce1414;
 // }

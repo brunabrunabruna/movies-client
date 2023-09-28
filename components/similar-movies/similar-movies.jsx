@@ -25,7 +25,7 @@ const SimilarMovies = ({ movies }) => {
               return (
                 <>
                   <Col className="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-xs-12 mb-5">
-                    <Card className=" border-0 h-100 ">
+                    <Card className=" border-0 h-100 card-custom">
                       <Card.Img
                         src={movie.imagepath}
                         className="rounded-4 similar-movie-img "
