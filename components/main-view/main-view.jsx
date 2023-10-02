@@ -18,6 +18,10 @@ const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
   const [movies, setMovies] = useState([]);
+
+  const [search, setSearch] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
+
   useEffect(() => {
     if (!token) {
       return;
@@ -41,11 +45,24 @@ const MainView = () => {
   // }, [user.favoriteMovies]);
 
   //new client router syntax
+  const getSearchedMovies = (arr, query) => {
+    return arr.filter((movie) => {
+      return movie.title.toLowerCase().includes(query.toLowerCase());
+    });
+  };
+  console.log(getSearchedMovies(movies, search));
+
+  useEffect(() => {
+    setFilteredMovies(getSearchedMovies(movies, search));
+  }, [search, movies]);
 
   return (
     <>
       <NavbarComponent
         user={user}
+        movies={movies}
+        search={search}
+        setSearch={setSearch}
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
@@ -81,7 +98,7 @@ const MainView = () => {
               path="/movies"
               element={
                 <>
-                  {movies.map((movie) => {
+                  {filteredMovies.map((movie) => {
                     return (
                       <MovieCard
                         movie={movie}

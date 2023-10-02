@@ -4,12 +4,25 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Img from "../img/ghibli-logo.png";
 import "./navbar.scss";
+import { Button, Form } from "react-bootstrap";
+import { useState } from "react";
 
-function NavbarComponent({ user, onLoggedOut }) {
+function NavbarComponent({ user, onLoggedOut, movies, search, setSearch }) {
+  // const handleSearch = (event) => {
+  //   event.preventDefault();
+
+  //   const getSearchedMovies = (arr, query) => {
+  //     return arr.filter((movie) => {
+  //       return movie.title.toLowerCase().includes(query.toLowerCase());
+  //     });
+  //   };
+  //   console.log(getSearchedMovies(movies, search));
+  // };
+
   return (
     <Navbar
       expand="lg"
-      className="bg-body-tertiary mb-5 fixed-top justify-content-end navbar-style "
+      className=" mb-5 fixed-top justify-content-end navbar-style "
     >
       <Container className="align-bottom align-items-end align-content-end align-self-end navbar-style">
         {/* <Navbar.Brand href="#home"> */}
@@ -26,22 +39,43 @@ function NavbarComponent({ user, onLoggedOut }) {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto justify-content-end">
-            {!user ? (
-              <>
+          {/* <Nav className="me-auto justify-content-end"> */}
+          {!user ? (
+            <>
+              <Nav className="me-auto justify-content-end">
                 <Nav.Link href="/login">login</Nav.Link>
                 <Nav.Link href="/signup">signup</Nav.Link>
-              </>
-            ) : (
-              <>
+              </Nav>
+            </>
+          ) : (
+            <>
+              <Nav className="me-auto justify-content-end">
                 <Nav.Link href="/movies">Home</Nav.Link>
                 <Nav.Link href="/profile">Profile</Nav.Link>
                 <Nav.Link href="/login" onClick={onLoggedOut}>
                   Logout
                 </Nav.Link>
-              </>
-            )}
-          </Nav>
+              </Nav>
+              <Form className="d-flex">
+                <Form.Control
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                />
+                {/* <Button
+                  variant="outline-primary"
+                  type="submit"
+                  onClick={handleSearch}
+                >
+                  Search
+                </Button> */}
+              </Form>
+            </>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
