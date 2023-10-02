@@ -30,5 +30,5 @@ $bs-body-bg: pink;
 
 
 //import bootstrap has to be at the end otherwise it will overwrite all modified variables
-@import '~bootstrap/scss/bootstrap.scss';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
 
