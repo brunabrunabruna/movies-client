@@ -4,6 +4,8 @@
 
 Ghibli archive is a website about the most iconic movies made by Studio Ghibli. Users can signup, discover more details about Ghibli movies, and make a list of their favorite movies.
 
+![app-screenshot](.//components/img/app-screenshot.png)
+
 ## My Role
 
 - Combined my previously created Movies API with a newly designed Frontend structure.
