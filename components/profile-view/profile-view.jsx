@@ -95,7 +95,7 @@ const ProfileView = ({ user, token, movies, setUser }) => {
     <>
       <Container className="">
         <Row className="justify-content-md-center">
-          <Col md={5}>
+          <Col md={8}>
             <CardGroup>
               <Card className="mb-5 border border-0 card-custom">
                 <Card.Body>
@@ -161,21 +161,21 @@ const ProfileView = ({ user, token, movies, setUser }) => {
                       variant="primary"
                       type="submit"
                       onClick={handleUpdate}
-                      className="text-white"
+                      className="text-white mt-4"
                     >
                       update profile
                     </Button>
-                    <Link to="/login">
-                      <Button
-                        variant="danger"
-                        type=""
-                        onClick={deleteAccount}
-                        className="text-white"
-                      >
-                        delete your account
-                      </Button>
-                    </Link>
                   </Form>
+                  <Link to="/login">
+                    <Button
+                      variant="danger"
+                      type=""
+                      onClick={deleteAccount}
+                      className="text-white mt-3"
+                    >
+                      delete your account
+                    </Button>
+                  </Link>
                 </Card.Body>
               </Card>
             </CardGroup>
@@ -184,10 +184,13 @@ const ProfileView = ({ user, token, movies, setUser }) => {
       </Container>
 
       <Container>
-        <Row className="">
+        <Row className="justify-content-md-center align-items-center">
           {result.map((movie) => {
             return (
-              <Col key={movie._id} className="mb-4">
+              <Col
+                key={movie._id}
+                className="mb-4 justify-content-center align-items-center d-flex"
+              >
                 <MovieCard
                   movie={movie}
                   token={token}

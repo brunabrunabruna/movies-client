@@ -40,42 +40,50 @@ function NavbarComponent({ user, onLoggedOut, movies, search, setSearch }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           {/* <Nav className="me-auto justify-content-end"> */}
-          {!user ? (
-            <>
-              <Nav className="me-auto justify-content-end">
-                <Nav.Link href="/login">login</Nav.Link>
-                <Nav.Link href="/signup">signup</Nav.Link>
-              </Nav>
-            </>
-          ) : (
-            <>
-              <Nav className="me-auto justify-content-end">
-                <Nav.Link href="/movies">Home</Nav.Link>
-                <Nav.Link href="/profile">Profile</Nav.Link>
-                <Nav.Link href="/login" onClick={onLoggedOut}>
-                  Logout
-                </Nav.Link>
-              </Nav>
-              <Form className="d-flex">
-                <Form.Control
-                  onChange={(e) => {
-                    setSearch(e.target.value);
-                  }}
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                {/* <Button
+          <Nav className=" justify-content-end d-flex flex-grow-1">
+            {!user ? (
+              <>
+                <Nav.Item>
+                  <Nav.Link href="/login">login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link href="/signup">signup</Nav.Link>
+                </Nav.Item>
+              </>
+            ) : (
+              <>
+                <Nav.Item>
+                  <Nav.Link href="/movies">Home</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link href="/profile">Profile</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link href="/login" onClick={onLoggedOut}>
+                    Logout
+                  </Nav.Link>
+                </Nav.Item>
+                <Form className="d-flex navbar-style">
+                  <Form.Control
+                    onChange={(e) => {
+                      setSearch(e.target.value);
+                    }}
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  {/* <Button
                   variant="outline-primary"
                   type="submit"
                   onClick={handleSearch}
                 >
                   Search
                 </Button> */}
-              </Form>
-            </>
-          )}
+                </Form>
+              </>
+            )}
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
