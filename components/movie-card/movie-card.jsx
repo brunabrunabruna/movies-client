@@ -4,15 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./movie-card.scss";
 const MovieCard = ({ movie, token, setUser, user }) => {
-  const [isFavorite, setIsFavorite] = useState(
-    // true
-    //hmmm dont get it?
-    // user.favoriteMovies ? user.favoriteMovies.includes(movie._id) : false
-    // user.favoriteMovies.includes(movie._id)
-    false
-  );
-  //outputs to true false true false, why?
-  // console.log(isFavorite);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   // Use useEffect to log the value of isFavorite when it changes
   // useEffect(() => {
@@ -108,10 +100,6 @@ const MovieCard = ({ movie, token, setUser, user }) => {
         >
           <Card.Img src={movie.imagepath} className="img" />
           <Card.Body className="d-flex flex-column">
-            {/* <Card.Title>{movie.title}</Card.Title> */}
-            {/* <Card.Text>{movie.description}</Card.Text> */}
-
-            {/* <Link className="mt-auto align-self-stretch"> */}
             <Row>
               {/* links to movie info page */}
               <Col className="">

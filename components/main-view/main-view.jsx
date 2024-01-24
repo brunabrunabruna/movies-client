@@ -74,6 +74,14 @@ const MainView = () => {
         <BrowserRouter>
           <Routes>
             <Route
+              path="/"
+              element={
+                <>
+                  {user ? <Navigate to="/movies" /> : <Navigate to="/login" />}
+                </>
+              }
+            ></Route>
+            <Route
               path="/login"
               element={
                 <>
