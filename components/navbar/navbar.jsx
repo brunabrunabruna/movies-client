@@ -53,7 +53,7 @@ function NavbarComponent({ user, onLoggedOut, movies, search, setSearch }) {
             ) : (
               <>
                 <Nav.Item>
-                  <Nav.Link href="/movies">Home</Nav.Link>
+                  <Nav.Link href="/movies">Movies</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link href="/profile">Profile</Nav.Link>
