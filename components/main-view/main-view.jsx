@@ -106,16 +106,20 @@ const MainView = () => {
               path="/movies"
               element={
                 <>
-                  {filteredMovies.map((movie) => {
-                    return (
-                      <MovieCard
-                        movie={movie}
-                        token={token}
-                        setUser={setUser}
-                        user={user}
-                      />
-                    );
-                  })}
+                  {user ? (
+                    filteredMovies.map((movie) => {
+                      return (
+                        <MovieCard
+                          movie={movie}
+                          token={token}
+                          setUser={setUser}
+                          user={user}
+                        />
+                      );
+                    })
+                  ) : (
+                    <Navigate to="/login" />
+                  )}{" "}
                 </>
               }
             />

@@ -19,7 +19,7 @@ const MovieCard = ({ movie, token, setUser, user }) => {
   }, [user]);
 
   const addFavoriteMovie = () => {
-    console.log("called addfavmovies");
+    // console.log("called addfavmovies");
     fetch(
       `https://movies-api-render-0a0q.onrender.com/users/${user.username}/movies/${movie._id}`,
       { method: "POST", headers: { Authorization: `Bearer ${token}` } }
@@ -39,8 +39,8 @@ const MovieCard = ({ movie, token, setUser, user }) => {
           localStorage.setItem("user", JSON.stringify(responseUser));
           setUser(responseUser);
           setIsFavorite(true);
-          console.log("sucessfully added to favs");
-          console.log(responseUser.favoriteMovies);
+          // console.log("sucessfully added to favs");
+          // console.log(responseUser.favoriteMovies);
         }
       })
       .catch((err) => {
