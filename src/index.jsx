@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import MainView from "../components/main-view/main-view";
 import { Col, Container, Row } from "react-bootstrap";
 import "./index.scss";
+import ReactDOM from "react-dom";
 
 //main component
 const MyFlixApplication = () => {
@@ -14,8 +15,10 @@ const MyFlixApplication = () => {
 };
 
 //finds the root of your app
-const container = document.querySelector("#root");
-const root = createRoot(container);
+// const container = document.querySelector("#root");
+// const root = createRoot(container);
 
 //tells react to render your app in the root DOM element
-root.render(<MyFlixApplication />);
+// root.render(<MyFlixApplication />);
+
+ReactDOM.render(<MyFlixApplication />, document.querySelector("#root"));

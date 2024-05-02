@@ -7,7 +7,13 @@ import SignupView from "../signup-view/signup-view";
 import { Button, Col, Container, Nav, Row } from "react-bootstrap";
 import NavbarComponent from "../navbar/navbar";
 import "./main-view.scss";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import ProfileView from "../profile-view/profile-view";
 
 const MainView = () => {
@@ -73,22 +79,8 @@ const MainView = () => {
       <Row className="margin-top-custom justify-content-center mb-5">
         <BrowserRouter>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Navigate to={"/login"} />
-                </>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <>
-                  {user ? <Navigate to="/movies" /> : <Navigate to="/login" />}
-                </>
-              }
-            ></Route>
+            <Route path="/" element={<Navigate to="/login" replace />} />
+
             <Route
               path="/login"
               element={
@@ -142,6 +134,7 @@ const MainView = () => {
                 />
               }
             />
+            <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         </BrowserRouter>
       </Row>

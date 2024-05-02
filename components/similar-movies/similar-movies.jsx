@@ -34,7 +34,7 @@ const SimilarMovies = ({ movies }) => {
                       <Card.Body className="d-flex flex-column">
                         <Link to={`/movies/${movie._id}`}>
                           <Button variant="secondary" className="secondary">
-                            <Card.Title className="fs-6" href="/">
+                            <Card.Title className="fs-6">
                               {movie.title}
                             </Card.Title>
                           </Button>
