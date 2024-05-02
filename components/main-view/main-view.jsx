@@ -77,6 +77,14 @@ const MainView = () => {
               path="/"
               element={
                 <>
+                  <Navigate to={"/login"} />
+                </>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <>
                   {user ? <Navigate to="/movies" /> : <Navigate to="/login" />}
                 </>
               }
