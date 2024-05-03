@@ -12,7 +12,7 @@ import {
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -24,6 +24,8 @@ const LoginView = ({ onLoggedIn }) => {
     //DEBUG
     // console.log("login data stringified", JSON.stringify(data));
 
+    setIsLoading(true);
+
     fetch("https://movies-api-render-0a0q.onrender.com/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,6 +36,7 @@ const LoginView = ({ onLoggedIn }) => {
         return response.json();
       })
       .then(async (data) => {
+        setIsLoading(false);
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
@@ -43,7 +46,10 @@ const LoginView = ({ onLoggedIn }) => {
           alert("no such user");
         }
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => {
+        console.log("error", err);
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -54,6 +60,7 @@ const LoginView = ({ onLoggedIn }) => {
             <Card className="mb-5 border border-0">
               <Card.Body>
                 <Card.Title>Already have an account? Login:</Card.Title>
+                {isLoading && <div>Loading...</div>}
                 <Form onSubmit={handleSubmit}>
                   <Form.Group>
                     <Form.Label>
