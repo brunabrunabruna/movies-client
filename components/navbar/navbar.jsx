@@ -32,11 +32,10 @@ function NavbarComponent({ user, onLoggedOut, movies, search, setSearch }) {
           width="300px"
           height=""
           className="d-inline-block align-top"
+          // href="/movies"
         />
 
-        <Navbar.Brand className="align-bottom navbar-style">
-          Archive
-        </Navbar.Brand>
+        <Navbar.Brand className="align-bottom navbar-style"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           {/* <Nav className="me-auto justify-content-end"> */}

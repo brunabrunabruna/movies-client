@@ -8,7 +8,7 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import MovieCard from "../movie-card/movie-card";
 
 const ProfileView = ({ user, token, movies, setUser }) => {
@@ -21,7 +21,9 @@ const ProfileView = ({ user, token, movies, setUser }) => {
   const [birthday, setBirthday] = useState("");
 
   //creates an array with all the movies
-  let result = movies.filter((m) => user.favoriteMovies.includes(m._id));
+  let result = user
+    ? movies.filter((m) => user.favoriteMovies.includes(m._id))
+    : [];
 
   //UPDATING PROFILE INFOS
   const handleUpdate = (event) => {
@@ -68,27 +70,37 @@ const ProfileView = ({ user, token, movies, setUser }) => {
 
   //DELETE ACCOUNT
   const deleteAccount = () => {
-    fetch(
-      `https://movies-api-render-0a0q.onrender.com/users/${user.username}`,
-      {
-        method: "DELETE",
-        headers: {
-          // "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        // body: JSON.stringify(data),
-      }
-    ).then((response) => {
-      if (response.ok) {
-        setUser(null);
-        // setMovies(null);
-        localStorage.clear();
-        alert("your account has been deleted");
-        window.location.replace("/login");
-      } else {
-        alert("could not delete account");
-      }
-    });
+    //opens a popup thats asks for confirmation before deleting account
+    const confirmation = window.confirm(
+      "Are you sure you want to delete your account?"
+    );
+    // window.location.replace("/profile");
+    if (confirmation) {
+      fetch(
+        `https://movies-api-render-0a0q.onrender.com/users/${user.username}`,
+        {
+          method: "DELETE",
+          headers: {
+            // "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          // body: JSON.stringify(data),
+        }
+      ).then((response) => {
+        if (response.ok) {
+          setUser(null);
+          // setMovies(null);
+          localStorage.clear();
+          redirect("/login");
+          alert("your account has been deleted");
+
+          window.location.replace("/login");
+        } else {
+          alert("could not delete account");
+        }
+      });
+      // navigate("/login");
+    }
   };
 
   return (
@@ -166,16 +178,16 @@ const ProfileView = ({ user, token, movies, setUser }) => {
                       update profile
                     </Button>
                   </Form>
-                  <Link to="/login">
-                    <Button
-                      variant="danger"
-                      type=""
-                      onClick={deleteAccount}
-                      className="text-white mt-3"
-                    >
-                      delete your account
-                    </Button>
-                  </Link>
+                  {/* <Link to="/login"> */}
+                  <Button
+                    variant="danger"
+                    // type=""
+                    onClick={deleteAccount}
+                    className="text-white mt-3"
+                  >
+                    delete your account
+                  </Button>
+                  {/* </Link> */}
                 </Card.Body>
               </Card>
             </CardGroup>
